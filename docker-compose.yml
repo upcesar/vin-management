@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  vin.webapi:
+    image: ${DOCKER_REGISTRY-}vinwebapi
+    build:
+      context: .
+      dockerfile: VIN-Management/Dockerfile
