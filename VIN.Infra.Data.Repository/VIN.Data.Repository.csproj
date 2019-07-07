@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|netstandard2.1|netcoreapp2.2|AnyCPU'">
+    <OutputPath>..\..\DLLS\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DapperExtensions.NetCore" Version="2.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Npgsql" Version="4.0.6" />
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\OracleDriver\netstandard2.0\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\VIN.Domain\VIN.Domain.csproj" />
+    <ProjectReference Include="..\VIN.Infra.Data.Context\VIN.Data.Context.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <PackageReference Include="Dapper" Version="1.12.0" />
+    <PackageReference Include="DapperExtensions" Version="1.4.4" />
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\OracleDriver\netstandard2.0\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net471' ">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <PackageReference Include="Dapper" Version="1.12.0" />
+    <PackageReference Include="DapperExtensions" Version="1.4.4" />
+    
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="MongoDB\" />
+    <Folder Include="Redis\" />
+  </ItemGroup>
+</Project>

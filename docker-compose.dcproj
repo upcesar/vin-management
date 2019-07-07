@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>9b800db4-a353-4a85-acbe-f9bb589c9163</ProjectGuid>
+    <ProjectGuid>3bcaf95b-6e5a-45d6-b6de-4e8a04b1bae9</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/values</DockerServiceUrl>
     <DockerServiceName>vin.webapi</DockerServiceName>
