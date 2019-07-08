@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VIN.Application.Enum
+namespace VIN.Domain.Enum
 {
     public enum VehicleType
     {
-        BUS,
-        TRUCK,
+        BUS = 1,
+        TRUCK = 2,
     }
 }

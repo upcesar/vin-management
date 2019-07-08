@@ -2,12 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <RootNamespace>VIN.Application</RootNamespace>
+    <RootNamespace>VIN.Domain</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="CommandHandlers\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.4.0" />

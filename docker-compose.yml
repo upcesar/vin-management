@@ -5,6 +5,9 @@ services:
   mssql:
     image: microsoft/mssql-server-linux:2017-latest
     
+    networks:
+      - app-tier
+
     volumes:
       - mssql_server_data:/var/opt/mssql/data
     environment:
@@ -16,11 +19,17 @@ services:
 
   vin.webapi:
     image: ${DOCKER_REGISTRY-}vin.webapi
+    networks:
+      - app-tier
     build:
       context: .
       dockerfile: VIN.WebApi/Dockerfile
     depends_on:
       - mssql
+
+networks:
+  app-tier:
+    driver: bridge
 
 volumes:
   mssql_server_data:

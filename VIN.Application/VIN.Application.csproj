@@ -5,4 +5,17 @@
     <RootNamespace>VIN.Application</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Automapper" Version="8.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VIN.Domain\VIN.Domain.csproj" />
+    <ProjectReference Include="..\VIN.Infra.Data.Context\VIN.Data.Context.csproj" />
+    <ProjectReference Include="..\VIN.Infra.Data.Repository\VIN.Data.Repository.csproj" />
+  </ItemGroup>
+
+
 </Project>

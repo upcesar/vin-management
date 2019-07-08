@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VIN.Application.Enum;
+using VIN.Domain.Enum;
 
-namespace VIN.Application.Commands
+namespace VIN.Domain.Commands
 {
-    public abstract class VehicleCommand
+    public abstract class VehiclesCommand : Command
     {
         public Guid Id { get; protected set; }
         public string ChassisNumber { get; protected set; }
-        public VehicleType Type { get; protected set; }
+        public VehicleType VehicleType { get; protected set; }
         public string Color { get; protected set; }
         public byte NumPassengers { get; protected set; }
     }

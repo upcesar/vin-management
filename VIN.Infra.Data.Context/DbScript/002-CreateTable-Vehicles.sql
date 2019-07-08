@@ -9,7 +9,7 @@ CREATE TABLE Vehicles (
        CreatedAt                      datetimeoffset(7)    NOT NULL                                  DEFAULT GETUTCDATE(),
        UpdatedAt                      datetimeoffset(7)        NULL,
        ChassisNumber                  varchar(10)          NOT NULL,
-	   [Type]                         int                  NOT NULL,
+	   VehicleType                    int                  NOT NULL,
        Color                          varchar(10)          NOT NULL                                  DEFAULT 0,
 	   NumPassengers                  tinyint              NOT NULL
 );	
