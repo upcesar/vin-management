@@ -10,7 +10,7 @@ CREATE TABLE Vehicles (
        UpdatedAt                      datetimeoffset(7)        NULL,
        ChassisNumber                  varchar(10)          NOT NULL,
 	   [Type]                         int                  NOT NULL,
-       Color                          bit                  NOT NULL                                  DEFAULT 0,
+       Color                          varchar(10)          NOT NULL                                  DEFAULT 0,
 	   NumPassengers                  tinyint              NOT NULL
 );	
 
