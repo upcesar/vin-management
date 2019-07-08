@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using System;
 using VIN.Domain.Commands;
+using VIN.Domain.Enum;
 
 namespace VIN.Domain.Validations
 {
@@ -14,7 +15,9 @@ namespace VIN.Domain.Validations
             RuleFor(v => v.VehicleType)
                 .NotNull()
                 .NotEmpty()
-                .WithMessage("Tipo veículo não deve estar vazio");
+                .Equal(VehicleType.BUS)
+                .Equal(VehicleType.TRUCK)
+                .WithMessage("Tipo veículo inválido");
 
         protected void ValidateChassisNumber() =>
             RuleFor(v => v.ChassisNumber)

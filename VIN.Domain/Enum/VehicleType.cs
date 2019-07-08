@@ -8,5 +8,6 @@ namespace VIN.Domain.Enum
     {
         BUS = 1,
         TRUCK = 2,
+        INVALID = 99
     }
 }

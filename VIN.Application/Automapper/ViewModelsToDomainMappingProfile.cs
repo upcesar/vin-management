@@ -13,11 +13,13 @@ namespace VIN.Application.Automapper
     {
         public ViewModelsToDomainMappingProfile()
         {
+            var x = Enum.Parse<VehicleType>("1");
+
             CreateMap<VehicleViewModel, InsertVehicleCommand>()
-                .ConstructUsing(c => new InsertVehicleCommand(c.ChassisNumber, (VehicleType)c.VehicleType, c.Color));
+                .ConstructUsing(c => new InsertVehicleCommand(c.ChassisNumber, Enum.Parse<VehicleType>(c.VehicleType ?? "99"), c.Color));
 
             CreateMap<VehicleViewModel, UpdateVehicleCommand>()
-                .ConstructUsing(c => new UpdateVehicleCommand(c.Id, c.ChassisNumber, (VehicleType)c.VehicleType, c.Color));
+                .ConstructUsing(c => new UpdateVehicleCommand(c.Id, c.ChassisNumber, Enum.Parse<VehicleType>(c.VehicleType ?? "99"), c.Color));
 
         }
     }
