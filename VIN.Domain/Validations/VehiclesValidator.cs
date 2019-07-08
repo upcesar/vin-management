@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using System;
+using System.Collections.Generic;
 using VIN.Domain.Commands;
 using VIN.Domain.Enum;
 
@@ -11,13 +12,16 @@ namespace VIN.Domain.Validations
             RuleFor(c => c.Id)
                 .NotEqual(Guid.Empty);
 
-        protected void ValidateVehicleType() =>
+        protected void ValidateVehicleType()
+        {
+            var listVehicleType = new List<VehicleType> { VehicleType.BUS, VehicleType.TRUCK };
+
             RuleFor(v => v.VehicleType)
-                .NotNull()
-                .NotEmpty()
-                .Equal(VehicleType.BUS)
-                .Equal(VehicleType.TRUCK)
-                .WithMessage("Tipo veículo inválido");
+                    .NotNull()
+                    .NotEmpty()
+                    .Must(i => listVehicleType.Contains(i))
+                    .WithMessage("Tipo veículo inválido");
+        }
 
         protected void ValidateChassisNumber() =>
             RuleFor(v => v.ChassisNumber)

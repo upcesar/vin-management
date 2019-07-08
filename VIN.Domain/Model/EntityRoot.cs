@@ -6,7 +6,15 @@ namespace VIN.Domain.Model
 {
     public abstract class EntityRoot : IEquatable<EntityRoot>
     {
-        public Guid Id { get; protected set; }
+        public EntityRoot()
+        {
+            if (string.IsNullOrEmpty(Id))
+            {
+                Id = Guid.NewGuid().ToString();
+            }
+        }
+
+        public string Id { get; protected set; }
 
         public override bool Equals(object obj)
         {

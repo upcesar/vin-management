@@ -10,8 +10,8 @@ namespace VIN.Application.Interfaces
     {
         IEnumerable<VehicleViewModel> GetAll();
         VehicleViewModel Get(string id);
-        bool Insert(Vehicles vehicle);
-        bool Update(Vehicles vehicle);
-        bool Delete(Vehicles vehicle);
+        bool Insert(VehicleViewModel vehicle);
+        bool Update(VehicleViewModel vehicle);
+        bool Delete(VehicleViewModel vehicle);
     }
 }

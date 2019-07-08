@@ -12,7 +12,6 @@ namespace VIN.Domain.Commands
             ChassisNumber = chassisNumber;
             VehicleType = vehicleType;
             Color = color;
-            NumPassengers = vehicleType.Equals(VehicleType.TRUCK) ? (byte)42 : (byte)2;
         }
 
         public override bool IsValid()

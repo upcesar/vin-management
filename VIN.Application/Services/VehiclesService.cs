@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VIN.Application.Interfaces;
 using VIN.Application.ViewModel;
+using VIN.Domain.Commands;
 using VIN.Domain.Interfaces;
 using VIN.Domain.Model;
 
@@ -34,8 +35,48 @@ namespace VIN.Application.Services
             return mapper.Map<VehicleViewModel>(vehicle);
         }
 
-        public bool Insert(Vehicles vehicle) => throw new NotImplementedException();
-        public bool Update(Vehicles vehicle) => throw new NotImplementedException();
-        public bool Delete(Vehicles vehicle) => throw new NotImplementedException();
+        public bool Insert(VehicleViewModel vehicle)
+        {
+            var vehicleCommand = mapper.Map<InsertVehicleCommand>(vehicle);
+            vehicleCommand.SetNumberOfPassenger();
+
+            if (vehicleCommand.IsValid())
+            {
+                var entity = new Vehicles(vehicleCommand.ChassisNumber, vehicleCommand.VehicleType.GetHashCode(), vehicleCommand.Color, vehicleCommand.NumPassengers);
+                var inserted = repository.Insert(entity);
+                return inserted;
+            }
+
+            return false;
+        }
+
+        public bool Update(VehicleViewModel vehicle)
+        {
+            var vehicleCommand = mapper.Map<UpdateVehicleCommand>(vehicle);
+            vehicleCommand.SetNumberOfPassenger();
+
+            if (vehicleCommand.IsValid())
+            {
+                var entity = new Vehicles(vehicleCommand.Id.ToString(), vehicleCommand.ChassisNumber, vehicleCommand.VehicleType.GetHashCode(), vehicleCommand.Color, vehicleCommand.NumPassengers);
+                var updated = repository.Update(entity);
+                return updated;
+            }
+
+            return false;
+        }
+
+        public bool Delete(VehicleViewModel vehicle)
+        {
+            var vehicleCommand = mapper.Map<DeleteVehicleCommand>(vehicle);
+
+            if (vehicleCommand.IsValid())
+            {
+                var entity = new Vehicles(vehicleCommand.Id.ToString());
+                var deleted = repository.Delete(entity);
+                return deleted;
+            }
+
+            return false;
+        }
     }
 }

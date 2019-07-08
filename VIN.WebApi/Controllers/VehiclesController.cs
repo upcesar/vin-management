@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VIN.Application.Interfaces;
+using VIN.Application.ViewModel;
 using VIN.Domain.Model;
 
 namespace VIN.WebApi.Controllers
@@ -31,7 +32,7 @@ namespace VIN.WebApi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(string id)
+        public IActionResult Get(string id)
         {
             var vehicle = service.Get(id);
             return Ok(vehicle);
@@ -39,8 +40,11 @@ namespace VIN.WebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] VehicleViewModel vehicle)
         {
+            this.service.Insert(vehicle);
+
+            return Ok("Dados inseridos com sucesso");
         }
 
         // PUT api/values/5
