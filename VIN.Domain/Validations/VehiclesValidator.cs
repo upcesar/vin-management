@@ -10,7 +10,9 @@ namespace VIN.Domain.Validations
     {
         protected void ValidateId() => 
             RuleFor(c => c.Id)
-                .NotEqual(Guid.Empty);
+                .NotNull()
+                .NotEmpty()
+                .NotEqual(Guid.Empty.ToString());
 
         protected void ValidateVehicleType()
         {

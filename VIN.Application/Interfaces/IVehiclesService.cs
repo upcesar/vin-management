@@ -12,6 +12,6 @@ namespace VIN.Application.Interfaces
         VehicleViewModel Get(string id);
         bool Insert(VehicleViewModel vehicle);
         bool Update(VehicleViewModel vehicle);
-        bool Delete(VehicleViewModel vehicle);
+        bool Delete(string id);
     }
 }

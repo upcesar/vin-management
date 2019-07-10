@@ -57,7 +57,7 @@ namespace VIN.Application.Services
 
             if (vehicleCommand.IsValid())
             {
-                var entity = new Vehicles(vehicleCommand.Id.ToString(), vehicleCommand.ChassisNumber, vehicleCommand.VehicleType.GetHashCode(), vehicleCommand.Color, vehicleCommand.NumPassengers);
+                var entity = new Vehicles(vehicleCommand.Id, vehicleCommand.ChassisNumber, vehicleCommand.VehicleType.GetHashCode(), vehicleCommand.Color, vehicleCommand.NumPassengers);
                 var updated = repository.Update(entity);
                 return updated;
             }
@@ -65,13 +65,13 @@ namespace VIN.Application.Services
             return false;
         }
 
-        public bool Delete(VehicleViewModel vehicle)
+        public bool Delete(string id)
         {
-            var vehicleCommand = mapper.Map<DeleteVehicleCommand>(vehicle);
+            var vehicleCommand = new DeleteVehicleCommand(id);
 
             if (vehicleCommand.IsValid())
             {
-                var entity = new Vehicles(vehicleCommand.Id.ToString());
+                var entity = new Vehicles(vehicleCommand.Id);
                 var deleted = repository.Delete(entity);
                 return deleted;
             }

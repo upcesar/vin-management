@@ -6,7 +6,7 @@ namespace VIN.Domain.Commands
 {
     public class UpdateVehicleCommand : VehiclesCommand
     {
-        public UpdateVehicleCommand(Guid id, string chassisNumber, VehicleType vehicleType, string color)
+        public UpdateVehicleCommand(string id, string chassisNumber, VehicleType vehicleType, string color)
         {
             Id = id;
             ChassisNumber = chassisNumber;

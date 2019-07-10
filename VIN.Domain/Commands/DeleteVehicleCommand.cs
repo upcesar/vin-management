@@ -6,7 +6,7 @@ namespace VIN.Domain.Commands
 {
     public class DeleteVehicleCommand : VehiclesCommand
     {
-        public DeleteVehicleCommand(Guid id) => Id = id;
+        public DeleteVehicleCommand(string id) => Id = id;
 
         public override bool IsValid()
         {
