@@ -1,5 +1,5 @@
 # VIN-Management
-Open source Vehicle Identification Number (VIN) for trucks written in .NET, using DDD and CQRS and some Design Pattenrs.
+Open source Vehicle Identification Number (VIN) for trucks written in .NET, using DDD and CQRS and some Design Patterns.
 
 # Architecture and Pattern Used
 
