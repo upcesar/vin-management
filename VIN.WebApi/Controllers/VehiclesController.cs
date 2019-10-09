@@ -48,6 +48,7 @@ namespace VIN.WebApi.Controllers
         }
 
         // PUT api/values/
+        [HttpPut]
         public IActionResult Put([FromBody] VehicleViewModel vehicle)
         {
             this.service.Update(vehicle);
