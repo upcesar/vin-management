@@ -19,6 +19,9 @@ namespace VIN_Management
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                    .ConfigureAppConfiguration((hostingContext, config) =>
+                        config.SetBasePath(Directory.GetCurrentDirectory())
+                              .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true))
+                    .UseStartup<Startup>();
     }
 }

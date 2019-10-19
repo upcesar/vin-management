@@ -1,11 +1,7 @@
-﻿using VIN.Infra.Data.Context.Enums;
-using VIN.Infra.Data.Context.Interfaces;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using Microsoft.Extensions.Configuration;
 using System.Data;
-using System.Linq;
-using System.Reflection;
-using Microsoft.Extensions.Configuration;
+using VIN.Infra.Data.Context.Enums;
+using VIN.Infra.Data.Context.Interfaces;
 
 namespace VIN.Infra.Data.Context.Db
 {
@@ -14,6 +10,12 @@ namespace VIN.Infra.Data.Context.Db
     /// </summary>
     public abstract class DbContext : IDbContext
     {
+        #region Variable
+
+        private readonly IConfiguration configuration;
+
+        #endregion
+        
         #region Atributes
 
         /// <summary>
@@ -44,10 +46,8 @@ namespace VIN.Infra.Data.Context.Db
 
         #region Constructor
 
-        public DbContext()
-        {
+        public DbContext(IConfiguration configuration) => this.configuration = configuration;
 
-        }
 
         #endregion
 
@@ -89,12 +89,7 @@ namespace VIN.Infra.Data.Context.Db
 
         private void ConnectDatabase()
         {
-            ConnectionString = new ConfigurationBuilder()
-                                    .AddJsonFile("appsettings.json")
-                                    .Build()
-                                    .GetSection($"ConnectionStrings:{ConnectionStringName}")
-                                    .Value ?? string.Empty;
-
+            ConnectionString = configuration.GetConnectionString(ConnectionStringName);
             this.Connection = this.Connection ?? DbConnectionFactory.Create(this);
         }
         

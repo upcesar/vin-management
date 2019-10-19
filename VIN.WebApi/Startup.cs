@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
@@ -35,7 +36,6 @@ namespace VIN_Management
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -56,6 +56,7 @@ namespace VIN_Management
             });
 
             services.AddTransient<IVehiclesService, VehiclesService>()
+                    .AddSingleton(Configuration)
                     .AddScoped<IDbContext, SqlServerContext>()
                     .AddScoped<IUnitOfWork, UnitOfWork>()
                     .AddTransient<IVehiclesRepository, VehiclesRepository>()

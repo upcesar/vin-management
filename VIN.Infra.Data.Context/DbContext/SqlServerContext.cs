@@ -1,8 +1,5 @@
-﻿using VIN.Infra.Data.Context.Enums;
-using VIN.Infra.Data.Context.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.Configuration;
+using VIN.Infra.Data.Context.Enums;
 
 namespace VIN.Infra.Data.Context.Db
 {
@@ -11,7 +8,7 @@ namespace VIN.Infra.Data.Context.Db
     /// </summary>
     public sealed class SqlServerContext : DbContext
     {
-        public SqlServerContext() : base()
+        public SqlServerContext(IConfiguration configuration) : base(configuration)
         {
             this.Provider = DatabaseProviders.SQL_SERVER;
             this.ConnectionStringName = "DefaultConnection";
