@@ -26,10 +26,7 @@ namespace VIN_Management
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -60,8 +57,7 @@ namespace VIN_Management
                     .AddScoped<IDbContext, SqlServerContext>()
                     .AddScoped<IUnitOfWork, UnitOfWork>()
                     .AddTransient<IVehiclesRepository, VehiclesRepository>()
-                    .AddAutoMapperSetup<AutoMapperConfig>();
-                    
+                    .AddAutoMapperSetup<AutoMapperConfig>();                    
             
             services.AddMvc()
                     .AddJsonOptions(opt =>
@@ -70,8 +66,6 @@ namespace VIN_Management
                         opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                     })
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

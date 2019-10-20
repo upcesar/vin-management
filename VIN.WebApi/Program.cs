@@ -13,15 +13,12 @@ namespace VIN_Management
     public class Program
     {
         public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                    .ConfigureAppConfiguration((hostingContext, config) =>
-                        config.SetBasePath(Directory.GetCurrentDirectory())
-                              .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true))
-                    .UseStartup<Startup>();
+            => WebHost.CreateDefaultBuilder(args)
+                      .ConfigureAppConfiguration((hostingContext, config) 
+                            => config.SetBasePath(Directory.GetCurrentDirectory())
+                                     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true))
+                      .UseStartup<Startup>()
+                      .Build()
+                      .Run();
     }
 }
