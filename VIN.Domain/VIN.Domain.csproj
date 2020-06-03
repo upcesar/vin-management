@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VIN.Infra.Helpers\VIN.Infra.Helpers.Extensions\VIN.Helpers.Extensions.csproj" />
+    <ProjectReference Include="..\VIN.Infra.Helpers.Extensions\VIN.Helpers.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
