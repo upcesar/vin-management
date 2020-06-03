@@ -1,8 +1,5 @@
 ﻿using FluentValidation.Results;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using VIN.Domain.Model;
 
 namespace VIN.Domain.Commands
 {

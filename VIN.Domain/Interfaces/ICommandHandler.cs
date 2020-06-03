@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VIN.Domain.Commands;
+﻿using VIN.Domain.Commands;
 
 namespace VIN.Domain.Interfaces
 {

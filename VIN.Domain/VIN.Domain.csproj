@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -7,6 +7,10 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VIN.Infra.Helpers\VIN.Infra.Helpers.Extensions\VIN.Helpers.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

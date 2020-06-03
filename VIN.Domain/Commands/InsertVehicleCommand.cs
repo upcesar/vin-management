@@ -1,14 +1,15 @@
 ﻿using VIN.Domain.Enum;
 using VIN.Domain.Validations;
+using VIN.Helpers.Extensions;
 
 namespace VIN.Domain.Commands
 {
     public class InsertVehicleCommand : VehiclesCommand
     {
-        public InsertVehicleCommand(string chassisNumber, VehicleType vehicleType, string color)
+        public InsertVehicleCommand(string chassisNumber, string vehicleType, string color)
         {
             ChassisNumber = chassisNumber;
-            VehicleType = vehicleType;
+            VehicleType = vehicleType.ToEnum(VehicleType.INVALID);
             Color = color;
         }
 
