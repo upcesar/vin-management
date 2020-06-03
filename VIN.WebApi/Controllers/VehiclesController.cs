@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using VIN.Application.Interfaces;
 using VIN.Application.ViewModel;
-using VIN.Domain.Model;
 
 namespace VIN.WebApi.Controllers
 {
