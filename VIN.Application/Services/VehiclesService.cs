@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using MediatR;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VIN.Application.Interfaces;
 using VIN.Application.ViewModel;
 using VIN.Domain.Commands;
@@ -13,11 +15,13 @@ namespace VIN.Application.Services
     {
         private readonly IMapper mapper;
         private readonly IVehiclesRepository repository;
+        private readonly IMediator mediator;
 
-        public VehiclesService(IMapper mapper, IVehiclesRepository repository)
+        public VehiclesService(IMapper mapper, IVehiclesRepository repository, IMediator mediator)
         {
             this.mapper = mapper;
             this.repository = repository;
+            this.mediator = mediator;
         }
 
         public IEnumerable<VehicleViewModel> GetAll()
@@ -34,48 +38,25 @@ namespace VIN.Application.Services
             return mapper.Map<VehicleViewModel>(vehicle);
         }
 
-        public bool Insert(VehicleViewModel vehicle)
+        public async Task<bool> Insert(VehicleViewModel vehicle)
         {
             var vehicleCommand = mapper.Map<InsertVehicleCommand>(vehicle);
-            vehicleCommand.SetNumberOfPassenger();
 
-            if (vehicleCommand.IsValid())
-            {
-                var entity = new Vehicles(vehicleCommand.ChassisNumber, vehicleCommand.VehicleType.GetHashCode(), vehicleCommand.Color, vehicleCommand.NumPassengers);
-                var inserted = repository.Insert(entity);
-                return inserted;
-            }
-
-            return false;
+            return await mediator.Send(vehicleCommand);
         }
 
-        public bool Update(VehicleViewModel vehicle)
+        public async Task<bool> Update(VehicleViewModel vehicle)
         {
             var vehicleCommand = mapper.Map<UpdateVehicleCommand>(vehicle);
-            vehicleCommand.SetNumberOfPassenger();
-
-            if (vehicleCommand.IsValid())
-            {
-                var entity = new Vehicles(vehicleCommand.Id, vehicleCommand.ChassisNumber, vehicleCommand.VehicleType.GetHashCode(), vehicleCommand.Color, vehicleCommand.NumPassengers);
-                var updated = repository.Update(entity);
-                return updated;
-            }
-
-            return false;
+            
+            return await mediator.Send(vehicleCommand);
         }
 
-        public bool Delete(string id)
+        public async Task<bool> Delete(string id)
         {
             var vehicleCommand = new DeleteVehicleCommand(id);
 
-            if (vehicleCommand.IsValid())
-            {
-                var entity = new Vehicles(vehicleCommand.Id);
-                var deleted = repository.Delete(entity);
-                return deleted;
-            }
-
-            return false;
+            return await mediator.Send(vehicleCommand);
         }
     }
 }

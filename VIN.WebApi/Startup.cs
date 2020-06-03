@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.UI.V3.Pages.Account.Internal;
@@ -12,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using VIN.Application.Automapper;
 using VIN.Application.Interfaces;
 using VIN.Application.Services;
@@ -52,11 +54,14 @@ namespace VIN_Management
                 options.EnableForHttps = true;
             });
 
+            services.AddMediatR();
+
             services.AddTransient<IVehiclesService, VehiclesService>()
                     .AddSingleton(Configuration)
                     .AddScoped<IDbContext, SqlServerContext>()
                     .AddScoped<IUnitOfWork, UnitOfWork>()
                     .AddTransient<IVehiclesRepository, VehiclesRepository>()
+                    
                     .AddAutoMapperSetup<AutoMapperConfig>();                    
             
             services.AddMvc()

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MediatR;
 
 namespace VIN.Domain.Interfaces
 {
-    public interface ICommand
+    public interface ICommand: IRequest<bool>
     {
-        void Execute();
         bool IsValid();
     }
 }

@@ -5,6 +5,7 @@ using VIN.Infra.Data.Repository.Interfaces;
 using System.Collections.Generic;
 using System.Data;
 using DapperExtensions;
+using System.Threading.Tasks;
 
 namespace VIN.Infra.Data
 {
@@ -44,9 +45,9 @@ namespace VIN.Infra.Data
         /// </summary>
         /// <param name="entity">Entidade a inserir</param>
         /// <returns>Boolean para informar se a entidade foi inserida ou não</returns>
-        public bool Insert(TEntity entity)
+        public async Task<bool> Insert(TEntity entity)
         {
-            var inserted = entity == null ? null : Connection.Insert(entity, Transaction);
+            var inserted = entity == null ? null : await Connection.InsertAsync(entity, Transaction);
 
             return (inserted != null);
         }
@@ -56,10 +57,8 @@ namespace VIN.Infra.Data
         /// </summary>
         /// <param name="entities">Lista de entidades a inserir no repositório</param>
         /// <returns>Boolean para informar se a lista de entidades foi inserida ou não</returns>
-        public void Insert(IEnumerable<TEntity> entities)
-        {
-            Connection.Insert(entities, Transaction);
-        }
+        public async Task Insert(IEnumerable<TEntity> entities) 
+            => await Connection.InsertAsync(entities, Transaction);
 
         /// <summary>
         /// Obter uma lista de entidade sem filtro
@@ -85,20 +84,16 @@ namespace VIN.Infra.Data
         /// </summary>
         /// <param name="entity">Entidade a atualizar</param>
         /// <returns>Boolean para informar se a entidade foi atualizada ou não</returns>
-        public bool Update(TEntity entity)
-        {
-            return entity != null && Connection.Update(entity, Transaction);
-        }
+        public async Task<bool> Update(TEntity entity) 
+            => entity != null && await Connection.UpdateAsync(entity, Transaction);
 
         /// <summary>
         /// Exclui uma entidade
         /// </summary>
         /// <param name="entity">Entidade a excluir</param>
         /// <returns>Boolean para informar se a entidade foi excluída ou não</returns>
-        public bool Delete(TEntity entity)
-        {
-            return entity != null && Connection.Delete(entity, Transaction);
-        }
+        public async Task<bool> Delete(TEntity entity) 
+            => entity != null && await Connection.DeleteAsync(entity, Transaction);
 
         /// <summary>
         /// Fecha e libera a conexão atual e cancela a transação, caso tiver transação aberta.

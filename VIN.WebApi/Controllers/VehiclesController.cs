@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using VIN.Application.Interfaces;
 using VIN.Application.ViewModel;
 
@@ -34,27 +35,27 @@ namespace VIN.WebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] VehicleViewModel vehicle)
+        public async Task<IActionResult> Post([FromBody] VehicleViewModel vehicle)
         {
-            this.service.Insert(vehicle);
+            await this.service.Insert(vehicle);
 
             return Ok("Dados inseridos com sucesso");
         }
 
         // PUT api/values/
         [HttpPut]
-        public IActionResult Put([FromBody] VehicleViewModel vehicle)
+        public async Task<IActionResult> Put([FromBody] VehicleViewModel vehicle)
         {
-            this.service.Update(vehicle);
+            await this.service.Update(vehicle);
 
             return Ok("Dados atualizado com sucesso");
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
-            this.service.Delete(id);
+            await this.service.Delete(id);
 
             return Ok("Dados excluídos com sucesso");
         }

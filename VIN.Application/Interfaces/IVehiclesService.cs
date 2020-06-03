@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using VIN.Application.ViewModel;
 using VIN.Domain.Model;
 
@@ -10,8 +11,8 @@ namespace VIN.Application.Interfaces
     {
         IEnumerable<VehicleViewModel> GetAll();
         VehicleViewModel Get(string id);
-        bool Insert(VehicleViewModel vehicle);
-        bool Update(VehicleViewModel vehicle);
-        bool Delete(string id);
+        Task<bool> Insert(VehicleViewModel vehicle);
+        Task<bool> Update(VehicleViewModel vehicle);
+        Task<bool> Delete(string id);
     }
 }

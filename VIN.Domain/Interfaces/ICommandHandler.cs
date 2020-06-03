@@ -1,9 +1,9 @@
-﻿using VIN.Domain.Commands;
+﻿using MediatR;
 
 namespace VIN.Domain.Interfaces
 {
-    public interface ICommandHandler<TCommand> where TCommand : Command
+    public interface ICommandHandler<TCommand> : IRequestHandler<TCommand, bool> where TCommand : ICommand
     {
-        void Handle(TCommand command);
+        
     }
 }

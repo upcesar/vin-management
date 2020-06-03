@@ -1,6 +1,4 @@
-﻿using System;
-using VIN.Domain.Enum;
-using VIN.Domain.Validations;
+﻿using VIN.Domain.Validations;
 
 namespace VIN.Domain.Commands
 {
